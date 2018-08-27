@@ -16,7 +16,7 @@ First of all, you need to load de configuration file and create folders to run t
 
 ```
 source('config.R')
-source('envir.R)
+source('envir.R')
 ```
 
 ## Running the tests
