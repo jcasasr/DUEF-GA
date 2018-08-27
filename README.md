@@ -12,6 +12,13 @@ Casas-Roma, J. (2018). "DUEF-GA: Data Utility Evaluation Framework for GraphAnon
 
 R and igraph library are needed to run these scripts.
 
+First of all, you need to load de configuration file and create folders to run the samples:
+
+```
+source('config.R')
+source('envir.R)
+```
+
 ## Running the tests
 
 Three sample tests are included, in conjunction with their graphs (in .gml format).
