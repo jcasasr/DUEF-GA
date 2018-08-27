@@ -25,7 +25,7 @@ source('plot/plot.R');
 
 # GIL
 # Set: "AD", "h", "T", "SC", "EI", "D", "Core", "BC", "CC", "DC", "lambda1", "mu2"
-metricSet <- c("AD", "EI", "D", "BC", "CC", "DC", "lambda1");
+metricSet <- c("AD", "EI", "D", "BC", "CC", "DC");
 
 # SIL clustering (community detection algorithms)
 # Set: "infomap", "multilevel", "fastgreedy", "walktrap"

@@ -53,9 +53,17 @@ inflow2 <- computeInFlow(graphs2, datasetName2);
 
 # Average degree of the whole serie
 plotSeries(xs, list(res1[,1], res2[,1]), legendNames=c("Method A", "Method B"), legendPosition="topright", xlab="% Anonymization", ylab="Average Degree");
+plotSeries(xs, list(res1[,2], res2[,2]), legendNames=c("Method A", "Method B"), legendPosition="topright", xlab="% Anonymization", ylab="EI");
+plotSeries(xs, list(res1[,3], res2[,3]), legendNames=c("Method A", "Method B"), legendPosition="topright", xlab="% Anonymization", ylab="D");
+plotSeries(xs, list(res1[,4], res2[,4]), legendNames=c("Method A", "Method B"), legendPosition="bottomright", xlab="% Anonymization", ylab="Betweenness Centrality");
+plotSeries(xs, list(res1[,5], res2[,5]), legendNames=c("Method A", "Method B"), legendPosition="topright", xlab="% Anonymization", ylab="CC");
+plotSeries(xs, list(res1[,6], res2[,6]), legendNames=c("Method A", "Method B"), legendPosition="topright", xlab="% Anonymization", ylab="DC");
 
 # Precision
-plotSeries(xs, list(p1[,1], p2[,1]), legendNames=c("Method A", "Method B"), legendPosition="topright", xlab="% Anonymization", ylab="Precision");
+plotSeries(xs, list(p1[,1], p2[,1]), legendNames=c("Method A", "Method B"), legendPosition="topright", xlab="% Anonymization", ylab="Precision - Infomap");
+plotSeries(xs, list(p1[,2], p2[,2]), legendNames=c("Method A", "Method B"), legendPosition="topright", xlab="% Anonymization", ylab="Precision - MultiLevel");
+plotSeries(xs, list(p1[,3], p2[,3]), legendNames=c("Method A", "Method B"), legendPosition="topright", xlab="% Anonymization", ylab="Precision - FastGreegy");
+plotSeries(xs, list(p1[,4], p2[,4]), legendNames=c("Method A", "Method B"), legendPosition="topright", xlab="% Anonymization", ylab="Precision - WalkTrap");
 
 # RRTI
 plotSeries(xs, list(t(rrti1), t(rrti2)), legendNames=c("Method A", "Method B"), legendPosition="topright", xlab="% Anonymization", ylab="% RRTI");
