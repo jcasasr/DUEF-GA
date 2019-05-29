@@ -3,7 +3,7 @@
 #' @param graphs List of graphs (two or more).
 #' @param datasetName Name of the dataset (to store temporal values).
 #' @return Array with metrics' score values.
-createClusters <- function(graphs, datasetName) {
+createClusters <- function(graphs, datasetName, repetition) {
   # Create ans save clusters for each graph
   for(i in 1:length(graphs)) {
     g <- graphs[[i]];
@@ -13,7 +13,7 @@ createClusters <- function(graphs, datasetName) {
     for(clustering in clusteringSet) {
       logdebug("+++ Computing clustering algorithm: %s", clustering);
       
-      computeAndSave(g, clustering, datasetName, i);
+      computeAndSave(g, clustering, datasetName, repetition, i);
     }
   }
   
@@ -22,9 +22,9 @@ createClusters <- function(graphs, datasetName) {
 
 # Computes the community structure and save the results in .txt file
 # 
-computeAndSave <- function(g, clustering, datasetName, i) {
+computeAndSave <- function(g, clustering, datasetName, repetition, i) {
   # file
-  filename = paste(subdirClust, datasetName, "-", i, "-", clustering, ".txt", sep="");
+  filename = paste(subdirClust, datasetName, "-", repetition, "-", i, "-", clustering, ".txt", sep="");
   
   if(!file.exists(filename)) {
     # clustering

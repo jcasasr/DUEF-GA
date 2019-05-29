@@ -3,7 +3,7 @@
 #' @param graphs List of graphs (two or more).
 #' @param datasetName Name of the dataset (to store temporal values).
 #' @return Array with metrics' score values.
-createRRTI <- function(graphs, datasetName) {
+createRRTI <- function(graphs, datasetName, repetition) {
   # Create ans save clusters for each graph
   for(i in 1:length(graphs)) {
     g <- graphs[[i]];
@@ -14,7 +14,7 @@ createRRTI <- function(graphs, datasetName) {
     pr <- page_rank(g, algo="prpack", vids = V(g), directed=FALSE, damping=0.85);
     
     # Save values
-    filename <- paste(subdirRRTI, datasetName, "-", i, ".csv", sep="");
+    filename <- paste(subdirRRTI, datasetName, "-", repetition, "-", i, ".csv", sep="");
     write.table(pr$vector, file=filename, quote=FALSE, sep=";", dec=".", row.names=FALSE, col.names=FALSE);
   }
   
@@ -26,12 +26,12 @@ createRRTI <- function(graphs, datasetName) {
 #' @param graphs List of graphs (two or more).
 #' @param datasetName Name of the dataset (to store temporal values).
 #' @return Array with precision score values.
-computeRRTI <- function(graphs, datasetName, percen=0.2) {
+computeRRTI <- function(graphs, datasetName, repetition, percen=0.2) {
   # define array to store score values
   rrti <- array(data=NA, dim=length(graphs));
   
   # load RRTI for original graph
-  filename <- paste(subdirRRTI, datasetName, "-1.csv", sep="");
+  filename <- paste(subdirRRTI, datasetName, "-", repetition, "-1.csv", sep="");
   
   if(file.exists(filename)) {
     valuesG0 <- read.csv(file=filename, header=FALSE, sep=";", dec=".");
@@ -48,7 +48,7 @@ computeRRTI <- function(graphs, datasetName, percen=0.2) {
   for(i in 1:length(graphs)) {
     g <- graphs[[i]];
     
-    filename <- paste(subdirRRTI, datasetName, "-", i, ".csv", sep="");
+    filename <- paste(subdirRRTI, datasetName, "-", repetition, "-", i, ".csv", sep="");
     
     if(file.exists(filename)) {
       values <- read.csv(file=filename, header=FALSE, sep=";", dec=".");

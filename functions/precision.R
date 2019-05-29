@@ -3,7 +3,7 @@
 #' @param graphs List of graphs (two or more).
 #' @param datasetName Name of the dataset (to store temporal values).
 #' @return Array with precision score values.
-computePrecision <- function(graphs, datasetName) {
+computePrecision <- function(graphs, datasetName, repetition) {
   # define array to store score values
   p <- array(data=NA, dim=c(length(graphs), length(clusteringSet))
                   , dimnames=list(1:length(graphs), clusteringSet));
@@ -13,7 +13,7 @@ computePrecision <- function(graphs, datasetName) {
     logdebug("+++ Computing clustering algorithm: %s", clustering);
     
     # load default communities values (i.e. original graph)
-    filename <- paste(subdirClust, datasetName, "-1-", clustering, ".txt", sep="");
+    filename <- paste(subdirClust, datasetName, "-", repetition, "-1-", clustering, ".txt", sep="");
     
     if(file.exists(filename)) {
       com0 <- readCommunityFile(filename);
@@ -26,7 +26,7 @@ computePrecision <- function(graphs, datasetName) {
     for(i in 1:length(graphs)) {
       g <- graphs[[i]];
       
-      filename <- paste(subdirClust, datasetName, "-", i, "-", clustering, ".txt", sep="");
+      filename <- paste(subdirClust, datasetName, "-", repetition, "-", i, "-", clustering, ".txt", sep="");
       
       if(file.exists(filename)) {
         com1 <- readCommunityFile(filename);

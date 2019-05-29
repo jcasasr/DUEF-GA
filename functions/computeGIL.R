@@ -3,7 +3,7 @@
 #' @param graphs List of graphs (two or more).
 #' @param datasetName Name of the dataset (to store temporal values).
 #' @return Array with metrics' score values.
-computeGIL <- function(graphs, datasetName) {
+computeGIL <- function(graphs, datasetName, repetition) {
   # define array to store score values
   values <- array(data=NA, dim=c(length(graphs), length(metricSet))
                   , dimnames=list(1:length(graphs), metricSet));
@@ -20,7 +20,7 @@ computeGIL <- function(graphs, datasetName) {
     for(metric in metricSet) {
       logdebug("+++ Processing metric: %s", metric);
           
-      values[i, metric] <- getMetricValue(g, g0, metric, datasetName, i);
+      values[i, metric] <- getMetricValue(g, g0, metric, datasetName, repetition, i);
     }
   }
   
@@ -38,10 +38,10 @@ computeGIL <- function(graphs, datasetName) {
 #' @param datasetName Name of the dataset (to store temporal values).
 #' @param i Index of graph in graph's list.
 #' @return Metric's score value or values.
-getMetricValue <- function(g, g0, metric, datasetName, i) {
+getMetricValue <- function(g, g0, metric, datasetName, repetition, i) {
   
   # filename to store metric's score values
-  filenameMetric <- paste(subdirGIL, datasetName, "-", i, "-", metric, ".RData", sep="");
+  filenameMetric <- paste(subdirGIL, datasetName, "-", repetition, "-", i, "-", metric, ".RData", sep="");
   
   # filename to load original graph's values
   filenameMetricG0 <- paste(subdirGIL, datasetName, "-ORI-", metric, ".RData", sep="");

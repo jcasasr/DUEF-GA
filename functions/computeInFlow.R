@@ -3,7 +3,7 @@
 #' @param graphs List of graphs (two or more).
 #' @param datasetName Name of the dataset (to store temporal values).
 #' @return Array with metrics' score values.
-createInFlow <- function(graphs, datasetName) {
+createInFlow <- function(graphs, datasetName, repetition) {
   # Create ans save clusters for each graph
   for(i in 1:length(graphs)) {
     g <- graphs[[i]];
@@ -23,7 +23,7 @@ createInFlow <- function(graphs, datasetName) {
     maxDists <- apply(dists, 1, max);
     
     # Save values
-    filename <- paste(subdirInFlow, datasetName, "-", i, ".csv", sep="");
+    filename <- paste(subdirInFlow, datasetName, "-", repetition, "-", i, ".csv", sep="");
     write.table(maxDists, file=filename, quote=FALSE, sep=";", dec=".", row.names=FALSE, col.names=FALSE);
   }
   
@@ -35,12 +35,12 @@ createInFlow <- function(graphs, datasetName) {
 #' @param graphs List of graphs (two or more).
 #' @param datasetName Name of the dataset (to store temporal values).
 #' @return Array with precision score values.
-computeInFlow <- function(graphs, datasetName) {
+computeInFlow <- function(graphs, datasetName, repetition) {
   # define array to store score values
   inflow <- array(data=NA, dim=length(graphs));
   
   # load RRTI for original graph
-  filename <- paste(subdirInFlow, datasetName, "-1.csv", sep="");
+  filename <- paste(subdirInFlow, datasetName, "-", repetition, "-1.csv", sep="");
   
   if(file.exists(filename)) {
     valuesG0 <- read.csv(file=filename, header=FALSE, sep=";", dec=".");
@@ -51,7 +51,7 @@ computeInFlow <- function(graphs, datasetName) {
   
   # compute score for all graphs
   for(i in 1:length(graphs)) {
-    filename <- paste(subdirInFlow, datasetName, "-", i, ".csv", sep="");
+    filename <- paste(subdirInFlow, datasetName, "-", repetition, "-", i, ".csv", sep="");
     
     if(file.exists(filename)) {
       values <- read.csv(file=filename, header=FALSE, sep=";", dec=".");
