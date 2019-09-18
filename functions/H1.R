@@ -139,9 +139,9 @@ plotH1 <- function(candSize, anonSet, g0, datasetName) {
   
   #############
   # PLOT
-  colors <- c("gray20", "gray40", "gray60", "gray80", "white");
-  lty <- c(1, 2, 3, 4, 5);
-  lwd <- 3;
+  colors <- c("gray20", "gray40", "gray60", "gray80", "gray95");
+  lty <- c(1, 1, 1, 1, 1);
+  lwd <- 1;
   ymin <- 0;
   ymax <- 1;
   

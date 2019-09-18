@@ -6,7 +6,7 @@ Data Utility Evaluation Framework for Graph Anonymization
 
 Full description of these software can be found at:
 
-Casas-Roma, J. (2018). "DUEF-GA: Data Utility Evaluation Framework for GraphAnonymization". In XXX, pp. xx-yy.
+Casas-Roma, J. (2018). "DUEF-GA: Data Utility and Privacy Evaluation Framework for GraphAnonymization". In XXX, pp. xx-yy.
 
 ### Prerequisites
 
